@@ -1,37 +1,23 @@
-// JavaScript Document
-const supabase = supabase.createClient(
-  'https://yzyjycqvgndhgwgzbmbo.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl6eWp5Y3F2Z25kaGd3Z3pibWJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI1MjQ0NTYsImV4cCI6MjA2ODEwMDQ1Nn0._hvPIEou6cNITbL9TlxBX5K0ikwcrvdrPwxlFpk7QWQ'
-);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | PROquiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Login to PROquiz</h1>
 
-// LOGIN logic
-document.getElementById('login-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+  <form id="login-form">
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button type="submit">Log In</button>
+  </form>
 
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
+  <p>No account? <a href="signup.html">Sign up</a></p>
 
-  if (error) {
-    alert('Login failed: ' + error.message);
-  } else {
-    window.location.href = 'dashboard.html';
-  }
-});
-
-// SIGNUP logic
-document.getElementById('signup-link').addEventListener('click', async () => {
-  const email = prompt("Enter your email:");
-  const password = prompt("Choose a password:");
-
-  const { data, error } = await supabase.auth.signUp({ email, password });
-
-  if (error) {
-    alert("Signup failed: " + error.message);
-  } else {
-    alert("Check your email to confirm your account.");
-  }
-});
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="script/auth.js"></script>
+</body>
+</html>
