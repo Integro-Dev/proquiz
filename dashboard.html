@@ -9,26 +9,13 @@
 <body>
   <h1>Dashboard</h1>
   <p>Welcome! You are logged in.</p>
-  <button onclick="logout()">Logout</button>
+  <button id="logout-button">Logout</button>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="script/auth.js"></script>
   <script>
-    const supabase = supabase.createClient(
-      'https://yzyjycqvgndhgwgzbmbo.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl6eWp5Y3F2Z25kaGd3Z3pibWJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI1MjQ0NTYsImV4cCI6MjA2ODEwMDQ1Nn0._hvPIEou6cNITbL9TlxBX5K0ikwcrvdrPwxlFpk7QWQ'
-    );
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
-        alert("You must be logged in.");
-        window.location.href = "login.html";
-      }
-    });
-
-    async function logout() {
-      await supabase.auth.signOut();
-      window.location.href = "login.html";
-    }
+    // Immediately check if the user is authenticated when the dashboard loads
+    checkAuthAndRedirect('login.html');
   </script>
 </body>
 </html>
